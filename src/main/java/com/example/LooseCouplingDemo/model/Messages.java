@@ -16,7 +16,7 @@ public class Messages {
 
     private String content;
 
-    private MessageType messageType;
+    private String messageType;
 
     @ManyToOne
     private Users users;

@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: "Create Messages Table with foreign key"
+      id: "Create Messages Table with foreign key1"
       author: Parth
       changes:
         - createTable:
@@ -18,14 +18,12 @@ databaseChangeLog:
               - column:
                   name: messageType
                   type: VARCHAR(255)
-                  constraints:
-                    nullable: false
               - column:
                   name: user_id
                   type: BIGINT
 
   - changeSet:
-      id: "Add foreign Key user id"
+      id: "Add foreign Key user id1"
       author: Parth
       changes:
         - addForeignKeyConstraint:
