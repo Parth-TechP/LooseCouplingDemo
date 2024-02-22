@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - changeSet:
+      id: "Create Users Table"
+      author: Parth
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: username
+                  type: VARCHAR(255)
