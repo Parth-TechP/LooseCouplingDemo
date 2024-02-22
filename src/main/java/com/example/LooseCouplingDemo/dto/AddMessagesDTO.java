@@ -1,10 +1,12 @@
 package com.example.LooseCouplingDemo.dto;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
-import com.example.LooseCouplingDemo.model.MessageType;
 
 @Data
 public class AddMessagesDTO {
-    private MessageType messageType;
+    @NotBlank(message = "Message type is mandatory")
+    private String messageType;
+    @NotBlank(message = "Content is mandatory")
     private String content;
 }

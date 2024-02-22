@@ -15,6 +15,9 @@ public interface MessagesMapper {
     @Mapping(source = "messageType", target = "messageType")
     Messages DTOToEntity(AddMessagesDTO addMessagesDTO);
 
+    @InheritInverseConfiguration
+    AddMessagesDTO EntityToDTO(Messages messages);
+
     @Mapping(source = "content", target = "content")
     @Mapping(source = "messageType", target = "messageType")
     List<Messages> DTOToEntityList(List<AddMessagesDTO> addMessagesDTOS);
