@@ -12,14 +12,14 @@ import java.util.List;
 public interface MessagesMapper {
 
     @Mapping(source = "content", target = "content")
-    @Mapping(source = "messageType", target = "messageType")
+    @Mapping(source = "type", target = "type")
     Messages DTOToEntity(AddMessagesDTO addMessagesDTO);
 
     @InheritInverseConfiguration
     AddMessagesDTO EntityToDTO(Messages messages);
 
     @Mapping(source = "content", target = "content")
-    @Mapping(source = "messageType", target = "messageType")
+    @Mapping(source = "type", target = "type")
     List<Messages> DTOToEntityList(List<AddMessagesDTO> addMessagesDTOS);
 
     @InheritInverseConfiguration

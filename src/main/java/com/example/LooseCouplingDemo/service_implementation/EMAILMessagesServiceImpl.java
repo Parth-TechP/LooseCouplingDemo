@@ -23,13 +23,13 @@ public class EMAILMessagesServiceImpl implements MessageService {
     String messageType = "EMAIL";
     @Override
     public List<AddMessagesDTO> getAllMessages() {
-        List<Messages> messages = messagesRepository.findAllByMessageType(messageType);
+        List<Messages> messages = messagesRepository.findAllByType(messageType);
         return messages.stream().map(messagesMapper::EntityToDTO).collect(Collectors.toList());
     }
 
     @Override
     public AddMessagesDTO getById(Long id) {
-        List<Messages> messages = messagesRepository.findAllByMessageType(messageType);
+        List<Messages> messages = messagesRepository.findAllByType(messageType);
         return messagesMapper.EntityToDTO(messages.stream().filter(messages1 -> messages1.getId() == id).findFirst().orElseThrow(()-> new RuntimeException("Message not found for Id: "+id)));
     }
 

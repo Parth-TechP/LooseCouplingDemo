@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: "Create Users Table"
+      id: Create users table
       author: Parth
       changes:
         - createTable:
@@ -8,8 +8,7 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  type: BIGINT
-                  autoIncrement: true
+                  type: BIGSERIAL
                   constraints:
                     primaryKey: true
               - column:

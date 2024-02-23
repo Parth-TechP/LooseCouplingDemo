@@ -27,8 +27,11 @@ public class UsersController {
         return usersService.getUserById(UserId);
     }
 
+    @GetMapping("/{id}/messages")
+    ShowUserMessages getUserMessages(@PathVariable(value = "id")Long UserId){return usersService.getUserMessages(UserId);}
+
     @PostMapping
-    ShowUserMessages createUser(@Valid @RequestBody AddUsersDTO addUsersDTO){
+    ShowUserMessages createUser(@RequestBody AddUsersDTO addUsersDTO){
         return usersService.createUser(addUsersDTO);
     }
 }

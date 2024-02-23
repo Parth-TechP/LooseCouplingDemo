@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service("sms")
-public class SMSMessagesServiceImpl implements MessageService {
+@Service("messages")
+public class MessagesServiceImpl implements MessageService {
 
     @Autowired
     MessagesRepository messagesRepository;
@@ -20,17 +20,15 @@ public class SMSMessagesServiceImpl implements MessageService {
     @Autowired
     MessagesMapper messagesMapper;
 
-    String messageType = "SMS";
     @Override
     public List<AddMessagesDTO> getAllMessages() {
-        List<Messages> messages = messagesRepository.findAllByType(messageType);
+        List<Messages> messages = messagesRepository.findAll();
         return messages.stream().map(messagesMapper::EntityToDTO).collect(Collectors.toList());
-    }
+     }
 
     @Override
     public AddMessagesDTO getById(Long id) {
-        List<Messages> messages = messagesRepository.findAllByType(messageType);
-        return messagesMapper.EntityToDTO(messages.stream().filter(messages1 -> messages1.getId() == id).findFirst().orElseThrow(()-> new RuntimeException("Message not found for Id: "+id)));
+        return messagesMapper.EntityToDTO(messagesRepository.findById(id).orElseThrow(()-> new RuntimeException("Message not found for Id: "+id)));
     }
 
     @Override

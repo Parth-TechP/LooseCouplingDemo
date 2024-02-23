@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 public interface MessagesRepository extends JpaRepository<Messages, Long> {
-    List<Messages> findAllByMessageType(String messageType);
+    List<Messages> findAllByType(String messageType);
 }

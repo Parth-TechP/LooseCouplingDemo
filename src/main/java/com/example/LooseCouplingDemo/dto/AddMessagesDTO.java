@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 public class AddMessagesDTO {
     @NotBlank(message = "Message type is mandatory")
-    private String messageType;
+    private String type;
     @NotBlank(message = "Content is mandatory")
     private String content;
 }
