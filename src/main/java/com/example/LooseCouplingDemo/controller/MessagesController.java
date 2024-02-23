@@ -13,25 +13,25 @@ import java.util.List;
 @RestController
 @RequestMapping("/messages")
 public class MessagesController {
-//    @Autowired
-//    @Qualifier("email")
-//    MessageServiceInterface messageServiceInterface;
-
-
     @Autowired
-    MessageService messageService;
+    @Qualifier("email")
+    MessageServiceInterface messageServiceInterface;
+
+
+//    @Autowired
+//    MessageService messageService;
     @GetMapping
     List<AddMessagesDTO> getALlMessages(){
-        return messageService.getAllMessages();
+        return messageServiceInterface.getAllMessages();
     }
 
     @GetMapping("/{id}")
     AddMessagesDTO getById(@PathVariable(value = "id")Long MessageId){
-        return messageService.getById(MessageId);
+        return messageServiceInterface.getById(MessageId);
     }
 
     @PostMapping
     AddMessagesDTO createMessage(@Valid @RequestBody AddMessagesDTO addMessagesDTO){
-        return messageService.createMessage(addMessagesDTO);
+        return messageServiceInterface.createMessage(addMessagesDTO);
     }
 }
