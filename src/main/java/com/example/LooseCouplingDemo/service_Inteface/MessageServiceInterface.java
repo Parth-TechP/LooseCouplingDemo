@@ -4,7 +4,7 @@ import com.example.LooseCouplingDemo.dto.AddMessagesDTO;
 
 import java.util.List;
 
-public interface MessageService {
+public interface MessageServiceInterface {
     List<AddMessagesDTO> getAllMessages();
 
     AddMessagesDTO getById(Long id);

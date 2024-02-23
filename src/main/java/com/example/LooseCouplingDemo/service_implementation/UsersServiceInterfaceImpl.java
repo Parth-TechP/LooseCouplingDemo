@@ -6,8 +6,7 @@ import com.example.LooseCouplingDemo.dto.ShowUsersDTO;
 import com.example.LooseCouplingDemo.mapper.UsersMapper;
 import com.example.LooseCouplingDemo.model.Users;
 import com.example.LooseCouplingDemo.repository.UserRepository;
-import com.example.LooseCouplingDemo.service_Inteface.UserService;
-import org.apache.catalina.User;
+import com.example.LooseCouplingDemo.service_Inteface.UserServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service("userService")
-public class UsersServiceImpl implements UserService {
+public class UsersServiceInterfaceImpl implements UserServiceInterface {
     @Autowired
     UserRepository userRepository;
     @Autowired
