@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: "Create Messages Table with foreign key1"
+      id: Create Messages table
       author: Parth
       changes:
         - createTable:
@@ -8,34 +8,30 @@ databaseChangeLog:
             columns:
               - column:
                   name: id
-                  type: BIGINT
-                  autoIncrement: true
+                  type: BIGSERIAL
                   constraints:
                     primaryKey: true
               - column:
                   name: content
                   type: VARCHAR(255)
               - column:
-                  name: messageType
+                  name: type
                   type: VARCHAR(255)
               - column:
-                  name: user_id
+                  name: users_id
                   type: BIGINT
+                  constraints:
+                    nullable: true
 
   - changeSet:
-      id: "Add foreign Key user id1"
+      id: Add foreign key
       author: Parth
       changes:
         - addForeignKeyConstraint:
             baseTableName: messages
-            baseColumnNames: user_id
+            baseColumnNames:
+              - users_id
             referencedTableName: users
-            referencedColumnNames: id
-            constraintName: FK_message_user
-
-#  - changeSet:
-#      id: drop messages table
-#      author: Parth
-#      changes:
-#        - dropTable:
-#            tableName: messages
+            referencedColumnNames:
+              - id
+            constraintName: fk_messages_users

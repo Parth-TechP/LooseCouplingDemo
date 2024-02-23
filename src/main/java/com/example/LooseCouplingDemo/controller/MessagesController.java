@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/messages")
 public class MessagesController {
     @Autowired
-    @Qualifier("sms")
+    @Qualifier("email")
     MessageService messageService;
 
     @GetMapping
