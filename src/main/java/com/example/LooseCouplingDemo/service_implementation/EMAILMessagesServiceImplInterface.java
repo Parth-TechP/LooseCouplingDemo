@@ -4,15 +4,15 @@ import com.example.LooseCouplingDemo.dto.AddMessagesDTO;
 import com.example.LooseCouplingDemo.mapper.MessagesMapper;
 import com.example.LooseCouplingDemo.model.Messages;
 import com.example.LooseCouplingDemo.repository.MessagesRepository;
-import com.example.LooseCouplingDemo.service_Inteface.MessageService;
+import com.example.LooseCouplingDemo.service_Inteface.MessageServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service("sms")
-public class SMSMessagesServiceImpl implements MessageService {
+@Service("email")
+public class EMAILMessagesServiceImplInterface implements MessageServiceInterface {
 
     @Autowired
     MessagesRepository messagesRepository;
@@ -20,7 +20,7 @@ public class SMSMessagesServiceImpl implements MessageService {
     @Autowired
     MessagesMapper messagesMapper;
 
-    String messageType = "SMS";
+    String messageType = "EMAIL";
     @Override
     public List<AddMessagesDTO> getAllMessages() {
         List<Messages> messages = messagesRepository.findAllByType(messageType);

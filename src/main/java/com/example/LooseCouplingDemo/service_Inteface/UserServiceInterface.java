@@ -6,7 +6,7 @@ import com.example.LooseCouplingDemo.dto.ShowUsersDTO;
 
 import java.util.List;
 
-public interface UserService {
+public interface UserServiceInterface {
     List<ShowUsersDTO> getAllUsers();
 
     ShowUsersDTO getUserById(Long id);
