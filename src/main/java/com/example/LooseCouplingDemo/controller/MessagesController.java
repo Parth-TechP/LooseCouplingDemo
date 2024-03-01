@@ -1,8 +1,7 @@
 package com.example.LooseCouplingDemo.controller;
 
-import com.example.LooseCouplingDemo.dto.AddMessagesDTO;
-import com.example.LooseCouplingDemo.service_Inteface.MessageServiceInterface;
-import com.example.LooseCouplingDemo.service_implementation.MessageService;
+import com.example.LooseCouplingDemo.dto.MessageAdditionDTO;
+import com.example.LooseCouplingDemo.service_inteface.MessageService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -15,23 +14,23 @@ import java.util.List;
 public class MessagesController {
     @Autowired
     @Qualifier("email")
-    MessageServiceInterface messageServiceInterface;
+    MessageService messageService;
 
 
 //    @Autowired
 //    MessageService messageService;
     @GetMapping
-    List<AddMessagesDTO> getALlMessages(){
-        return messageServiceInterface.getAllMessages();
+    List<MessageAdditionDTO> getAllMessages(){
+        return messageService.getAllMessages();
     }
 
     @GetMapping("/{id}")
-    AddMessagesDTO getById(@PathVariable(value = "id")Long MessageId){
-        return messageServiceInterface.getById(MessageId);
+    MessageAdditionDTO getById(@PathVariable(value = "id")Long MessageId){
+        return messageService.getById(MessageId);
     }
 
     @PostMapping
-    AddMessagesDTO createMessage(@Valid @RequestBody AddMessagesDTO addMessagesDTO){
-        return messageServiceInterface.createMessage(addMessagesDTO);
+    MessageAdditionDTO createMessage(@Valid @RequestBody MessageAdditionDTO messageAdditionDTO){
+        return messageService.createMessage(messageAdditionDTO);
     }
 }

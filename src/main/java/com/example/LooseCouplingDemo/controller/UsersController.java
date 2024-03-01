@@ -1,9 +1,9 @@
 package com.example.LooseCouplingDemo.controller;
 
-import com.example.LooseCouplingDemo.dto.AddUsersDTO;
-import com.example.LooseCouplingDemo.dto.ShowUserMessages;
-import com.example.LooseCouplingDemo.dto.ShowUsersDTO;
-import com.example.LooseCouplingDemo.service_Inteface.UserServiceInterface;
+import com.example.LooseCouplingDemo.dto.UserAdditionDTO;
+import com.example.LooseCouplingDemo.dto.UserMessagesDisplayDTO;
+import com.example.LooseCouplingDemo.dto.UserDisplayDTO;
+import com.example.LooseCouplingDemo.service_inteface.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,22 +14,22 @@ import java.util.List;
 public class UsersController {
 
     @Autowired
-    UserServiceInterface usersService;
+    UserService userService;
     @GetMapping
-    List<ShowUsersDTO> getAllUsers(){
-        return usersService.getAllUsers();
+    List<UserDisplayDTO> getAllUsers(){
+        return userService.getAllUsers();
     }
 
     @GetMapping("/{id}")
-    ShowUsersDTO getUserById(@PathVariable(value = "id")Long UserId){
-        return usersService.getUserById(UserId);
+    UserDisplayDTO getUserById(@PathVariable(value = "id")Long UserId){
+        return userService.getUserById(UserId);
     }
 
     @GetMapping("/{id}/messages")
-    ShowUserMessages getUserMessages(@PathVariable(value = "id")Long UserId){return usersService.getUserMessages(UserId);}
+    UserMessagesDisplayDTO getUserMessages(@PathVariable(value = "id")Long UserId){return userService.getUserMessages(UserId);}
 
     @PostMapping
-    ShowUserMessages createUser(@RequestBody AddUsersDTO addUsersDTO){
-        return usersService.createUser(addUsersDTO);
+    UserMessagesDisplayDTO createUser(@RequestBody UserAdditionDTO userAdditionDTO){
+        return userService.createUser(userAdditionDTO);
     }
 }

@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
-public class AddMessagesDTO {
+public class MessageAdditionDTO {
     @NotBlank(message = "Message type is mandatory")
     private String type;
     @NotBlank(message = "Content is mandatory")
