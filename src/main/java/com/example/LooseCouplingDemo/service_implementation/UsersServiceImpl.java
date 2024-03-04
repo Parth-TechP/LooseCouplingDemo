@@ -3,6 +3,7 @@ package com.example.LooseCouplingDemo.service_implementation;
 import com.example.LooseCouplingDemo.dto.UserAdditionDTO;
 import com.example.LooseCouplingDemo.dto.UserDisplayDTO;
 import com.example.LooseCouplingDemo.dto.UserMessagesDisplayDTO;
+import com.example.LooseCouplingDemo.exceptions.ResourceNotFoundException;
 import com.example.LooseCouplingDemo.mapper.UsersMapper;
 import com.example.LooseCouplingDemo.model.Users;
 import com.example.LooseCouplingDemo.repository.UserRepository;
@@ -27,13 +28,13 @@ public class UsersServiceImpl implements UserService {
     }
 
     @Override
-    public UserDisplayDTO getUserById(Long id) {
-        return usersMapper.convertUsersToUserDisplayDto(userRepository.findById(id).orElseThrow(()->new RuntimeException("User not found with Id: "+id)));
+    public UserDisplayDTO getUserById(Long id)throws ResourceNotFoundException {
+        return usersMapper.convertUsersToUserDisplayDto(userRepository.findById(id).orElseThrow(()->new ResourceNotFoundException(id)));
     }
 
     @Override
-    public UserMessagesDisplayDTO getUserMessages(Long id) {
-        return usersMapper.convertUsersToUserMessagesDisplayDto(userRepository.findById(id).orElseThrow(()->new RuntimeException("User not found with Id: "+id)));
+    public UserMessagesDisplayDTO getUserMessages(Long id)throws ResourceNotFoundException {
+        return usersMapper.convertUsersToUserMessagesDisplayDto(userRepository.findById(id).orElseThrow(()->new ResourceNotFoundException(id)));
     }
 
     @Override

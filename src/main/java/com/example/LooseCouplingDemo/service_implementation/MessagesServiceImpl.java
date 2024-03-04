@@ -1,6 +1,7 @@
 package com.example.LooseCouplingDemo.service_implementation;
 
 import com.example.LooseCouplingDemo.dto.MessageAdditionDTO;
+import com.example.LooseCouplingDemo.exceptions.ResourceNotFoundException;
 import com.example.LooseCouplingDemo.mapper.MessagesMapper;
 import com.example.LooseCouplingDemo.model.Messages;
 import com.example.LooseCouplingDemo.repository.MessagesRepository;
@@ -27,8 +28,8 @@ public class MessagesServiceImpl implements MessageService {
      }
 
     @Override
-    public MessageAdditionDTO getById(Long id) {
-        return messagesMapper.convertMessagesToMessageAdditionDTO(messagesRepository.findById(id).orElseThrow(()-> new RuntimeException("Message not found for Id: "+id)));
+    public MessageAdditionDTO getById(Long id)throws ResourceNotFoundException {
+        return messagesMapper.convertMessagesToMessageAdditionDTO(messagesRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException(id)));
     }
 
     @Override

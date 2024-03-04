@@ -3,6 +3,7 @@ package com.example.LooseCouplingDemo.controller;
 import com.example.LooseCouplingDemo.dto.UserAdditionDTO;
 import com.example.LooseCouplingDemo.dto.UserMessagesDisplayDTO;
 import com.example.LooseCouplingDemo.dto.UserDisplayDTO;
+import com.example.LooseCouplingDemo.exceptions.ResourceNotFoundException;
 import com.example.LooseCouplingDemo.service_inteface.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,12 +22,12 @@ public class UsersController {
     }
 
     @GetMapping("/{id}")
-    UserDisplayDTO getUserById(@PathVariable(value = "id")Long UserId){
+    UserDisplayDTO getUserById(@PathVariable(value = "id")Long UserId)throws ResourceNotFoundException {
         return userService.getUserById(UserId);
     }
 
     @GetMapping("/{id}/messages")
-    UserMessagesDisplayDTO getUserMessages(@PathVariable(value = "id")Long UserId){return userService.getUserMessages(UserId);}
+    UserMessagesDisplayDTO getUserMessages(@PathVariable(value = "id")Long UserId)throws ResourceNotFoundException{return userService.getUserMessages(UserId);}
 
     @PostMapping
     UserMessagesDisplayDTO createUser(@RequestBody UserAdditionDTO userAdditionDTO){

@@ -14,6 +14,7 @@ public interface UsersMapper {
     @Mapping(source = "messages", target = "messages")
     Users convertUsersAddtionDtoToUsers(UserAdditionDTO userAdditionDTO);
 
+    @Mapping(source = "id", target = "id")
     @Mapping(source = "username", target = "username")
     UserDisplayDTO convertUsersToUserDisplayDto(Users users);
 

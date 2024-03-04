@@ -1,6 +1,7 @@
 package com.example.LooseCouplingDemo.controller;
 
 import com.example.LooseCouplingDemo.dto.MessageAdditionDTO;
+import com.example.LooseCouplingDemo.exceptions.ResourceNotFoundException;
 import com.example.LooseCouplingDemo.service_inteface.MessageService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import java.util.List;
 @RequestMapping("/messages")
 public class MessagesController {
     @Autowired
-    @Qualifier("email")
+    @Qualifier("sms")
     MessageService messageService;
 
 
@@ -25,7 +26,7 @@ public class MessagesController {
     }
 
     @GetMapping("/{id}")
-    MessageAdditionDTO getById(@PathVariable(value = "id")Long MessageId){
+    MessageAdditionDTO getById(@PathVariable(value = "id")Long MessageId)throws ResourceNotFoundException {
         return messageService.getById(MessageId);
     }
 

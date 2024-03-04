@@ -1,6 +1,7 @@
 package com.example.LooseCouplingDemo.service_implementation;
 
 import com.example.LooseCouplingDemo.dto.MessageAdditionDTO;
+import com.example.LooseCouplingDemo.exceptions.ResourceNotFoundException;
 import com.example.LooseCouplingDemo.mapper.MessagesMapper;
 import com.example.LooseCouplingDemo.model.Messages;
 import com.example.LooseCouplingDemo.repository.MessagesRepository;
@@ -23,14 +24,14 @@ public class SMSMessagesService implements MessageService {
     String messageType = "SMS";
     @Override
     public List<MessageAdditionDTO> getAllMessages() {
-        List<Messages> messages = messagesRepository.findAllByType(messageType);
+        List<Messages> messages = messagesRepository.findAllByTypeIgnoreCase(messageType);
         return messages.stream().map(messagesMapper::convertMessagesToMessageAdditionDTO).collect(Collectors.toList());
     }
 
     @Override
-    public MessageAdditionDTO getById(Long id) {
-        List<Messages> messages = messagesRepository.findAllByType(messageType);
-        return messagesMapper.convertMessagesToMessageAdditionDTO(messages.stream().filter(messages1 -> messages1.getId() == id).findFirst().orElseThrow(()-> new RuntimeException("Message not found for Id: "+id)));
+    public MessageAdditionDTO getById(Long id) throws ResourceNotFoundException {
+        List<Messages> messages = messagesRepository.findAllByTypeIgnoreCase(messageType);
+        return messagesMapper.convertMessagesToMessageAdditionDTO(messages.stream().filter(messages1 -> messages1.getId() == id).findFirst().orElseThrow(()-> new ResourceNotFoundException(id)));
     }
 
     @Override
