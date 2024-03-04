@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class UserMessagesDisplayDTO {
+public class UserMessagesDisplayDto {
     private String username;
-    private List<MessageAdditionDTO> messages;
+    private List<MessageAdditionDto> messages;
 }

@@ -1,10 +1,8 @@
 package com.example.LooseCouplingDemo.service_implementation;
 
-import com.example.LooseCouplingDemo.dto.MessageAdditionDTO;
-import com.example.LooseCouplingDemo.dto.UserDisplayDTO;
+import com.example.LooseCouplingDemo.dto.MessageAdditionDto;
 import com.example.LooseCouplingDemo.mapper.MessagesMapper;
 import com.example.LooseCouplingDemo.model.Messages;
-import com.example.LooseCouplingDemo.model.Users;
 import com.example.LooseCouplingDemo.repository.MessagesRepository;
 import com.example.LooseCouplingDemo.service_inteface.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,18 +23,18 @@ public class MessageService {
     UserService userService;
 
 
-    public List<MessageAdditionDTO> getAllMessages() {
+    public List<MessageAdditionDto> getAllMessages() {
         List<Messages> messages = messagesRepository.findAll();
         return messages.stream().map(messagesMapper::convertMessagesToMessageAdditionDTO).collect(Collectors.toList());
     }
 
 
-    public MessageAdditionDTO getById(Long id) {
+    public MessageAdditionDto getById(Long id) {
         return messagesMapper.convertMessagesToMessageAdditionDTO(messagesRepository.findById(id).orElseThrow(()-> new RuntimeException("Message not found for Id: "+id)));
     }
 
 
-    public MessageAdditionDTO createMessage(MessageAdditionDTO messageAdditionDTO) {
+    public MessageAdditionDto createMessage(MessageAdditionDto messageAdditionDTO) {
         Messages messages = messagesMapper.convertMessageAdditionDtoToMessages(messageAdditionDTO);
         this.messagesRepository.save(messages);
 //        List<UserDisplayDTO> userDisplayDTOS= userService.getAllUsers();

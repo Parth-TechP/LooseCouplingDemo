@@ -1,8 +1,8 @@
 package com.example.LooseCouplingDemo.service_implementation;
 
-import com.example.LooseCouplingDemo.dto.UserAdditionDTO;
-import com.example.LooseCouplingDemo.dto.UserDisplayDTO;
-import com.example.LooseCouplingDemo.dto.UserMessagesDisplayDTO;
+import com.example.LooseCouplingDemo.dto.UserAdditionDto;
+import com.example.LooseCouplingDemo.dto.UserDisplayDto;
+import com.example.LooseCouplingDemo.dto.UserMessagesDisplayDto;
 import com.example.LooseCouplingDemo.exceptions.ResourceNotFoundException;
 import com.example.LooseCouplingDemo.mapper.UsersMapper;
 import com.example.LooseCouplingDemo.model.Users;
@@ -22,23 +22,23 @@ public class UsersServiceImpl implements UserService {
     UsersMapper usersMapper;
 
     @Override
-    public List<UserDisplayDTO> getAllUsers() {
+    public List<UserDisplayDto> getAllUsers() {
         List<Users> users = userRepository.findAll();
         return users.stream().map(usersMapper::convertUsersToUserDisplayDto).collect(Collectors.toList());
     }
 
     @Override
-    public UserDisplayDTO getUserById(Long id)throws ResourceNotFoundException {
+    public UserDisplayDto getUserById(Long id)throws ResourceNotFoundException {
         return usersMapper.convertUsersToUserDisplayDto(userRepository.findById(id).orElseThrow(()->new ResourceNotFoundException(id)));
     }
 
     @Override
-    public UserMessagesDisplayDTO getUserMessages(Long id)throws ResourceNotFoundException {
+    public UserMessagesDisplayDto getUserMessages(Long id)throws ResourceNotFoundException {
         return usersMapper.convertUsersToUserMessagesDisplayDto(userRepository.findById(id).orElseThrow(()->new ResourceNotFoundException(id)));
     }
 
     @Override
-    public UserMessagesDisplayDTO createUser(UserAdditionDTO userAdditionDTO) {
+    public UserMessagesDisplayDto createUser(UserAdditionDto userAdditionDTO) {
         Users users = usersMapper.convertUsersAddtionDtoToUsers(userAdditionDTO);
         this.userRepository.save(users);
         return usersMapper.convertUsersToUserMessagesDisplayDto(users);

@@ -1,8 +1,8 @@
 package com.example.LooseCouplingDemo.mapper;
 
-import com.example.LooseCouplingDemo.dto.UserAdditionDTO;
-import com.example.LooseCouplingDemo.dto.UserMessagesDisplayDTO;
-import com.example.LooseCouplingDemo.dto.UserDisplayDTO;
+import com.example.LooseCouplingDemo.dto.UserAdditionDto;
+import com.example.LooseCouplingDemo.dto.UserMessagesDisplayDto;
+import com.example.LooseCouplingDemo.dto.UserDisplayDto;
 import com.example.LooseCouplingDemo.model.Users;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -12,13 +12,13 @@ public interface UsersMapper {
 
     @Mapping(source = "username", target = "username")
     @Mapping(source = "messages", target = "messages")
-    Users convertUsersAddtionDtoToUsers(UserAdditionDTO userAdditionDTO);
+    Users convertUsersAddtionDtoToUsers(UserAdditionDto userAdditionDTO);
 
     @Mapping(source = "id", target = "id")
     @Mapping(source = "username", target = "username")
-    UserDisplayDTO convertUsersToUserDisplayDto(Users users);
+    UserDisplayDto convertUsersToUserDisplayDto(Users users);
 
     @Mapping(source = "username", target = "username")
     @Mapping(source = "messages", target = "messages")
-    UserMessagesDisplayDTO convertUsersToUserMessagesDisplayDto(Users users);
+    UserMessagesDisplayDto convertUsersToUserMessagesDisplayDto(Users users);
 }

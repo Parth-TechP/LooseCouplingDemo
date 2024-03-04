@@ -7,8 +7,8 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class UserAdditionDTO {
+public class UserAdditionDto {
     @NotBlank(message = "Username is mandatory")
     private String username;
-    private List<MessageAdditionDTO> messages;
+    private List<MessageAdditionDto> messages;
 }

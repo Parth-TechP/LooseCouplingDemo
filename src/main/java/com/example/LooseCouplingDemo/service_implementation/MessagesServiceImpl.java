@@ -1,6 +1,6 @@
 package com.example.LooseCouplingDemo.service_implementation;
 
-import com.example.LooseCouplingDemo.dto.MessageAdditionDTO;
+import com.example.LooseCouplingDemo.dto.MessageAdditionDto;
 import com.example.LooseCouplingDemo.exceptions.ResourceNotFoundException;
 import com.example.LooseCouplingDemo.mapper.MessagesMapper;
 import com.example.LooseCouplingDemo.model.Messages;
@@ -22,18 +22,18 @@ public class MessagesServiceImpl implements MessageService {
     MessagesMapper messagesMapper;
 
     @Override
-    public List<MessageAdditionDTO> getAllMessages() {
+    public List<MessageAdditionDto> getAllMessages() {
         List<Messages> messages = messagesRepository.findAll();
         return messages.stream().map(messagesMapper::convertMessagesToMessageAdditionDTO).collect(Collectors.toList());
      }
 
     @Override
-    public MessageAdditionDTO getById(Long id)throws ResourceNotFoundException {
+    public MessageAdditionDto getById(Long id)throws ResourceNotFoundException {
         return messagesMapper.convertMessagesToMessageAdditionDTO(messagesRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException(id)));
     }
 
     @Override
-    public MessageAdditionDTO createMessage(MessageAdditionDTO messageAdditionDTO) {
+    public MessageAdditionDto createMessage(MessageAdditionDto messageAdditionDTO) {
         Messages messages = messagesMapper.convertMessageAdditionDtoToMessages(messageAdditionDTO);
         this.messagesRepository.save(messages);
         return messagesMapper.convertMessagesToMessageAdditionDTO(messages);

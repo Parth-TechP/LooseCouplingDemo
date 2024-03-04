@@ -1,6 +1,6 @@
 package com.example.LooseCouplingDemo.controller;
 
-import com.example.LooseCouplingDemo.dto.MessageAdditionDTO;
+import com.example.LooseCouplingDemo.dto.MessageAdditionDto;
 import com.example.LooseCouplingDemo.exceptions.ResourceNotFoundException;
 import com.example.LooseCouplingDemo.service_inteface.MessageService;
 import jakarta.validation.Valid;
@@ -14,24 +14,24 @@ import java.util.List;
 @RequestMapping("/messages")
 public class MessagesController {
     @Autowired
-    @Qualifier("sms")
+    @Qualifier("email")
     MessageService messageService;
 
 
 //    @Autowired
 //    MessageService messageService;
     @GetMapping
-    List<MessageAdditionDTO> getAllMessages(){
+    List<MessageAdditionDto> getAllMessages(){
         return messageService.getAllMessages();
     }
 
     @GetMapping("/{id}")
-    MessageAdditionDTO getById(@PathVariable(value = "id")Long MessageId)throws ResourceNotFoundException {
+    MessageAdditionDto getById(@PathVariable(value = "id")Long MessageId)throws ResourceNotFoundException {
         return messageService.getById(MessageId);
     }
 
     @PostMapping
-    MessageAdditionDTO createMessage(@Valid @RequestBody MessageAdditionDTO messageAdditionDTO){
+    MessageAdditionDto createMessage(@Valid @RequestBody MessageAdditionDto messageAdditionDTO){
         return messageService.createMessage(messageAdditionDTO);
     }
 }

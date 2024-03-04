@@ -1,8 +1,8 @@
 package com.example.LooseCouplingDemo.controller;
 
-import com.example.LooseCouplingDemo.dto.UserAdditionDTO;
-import com.example.LooseCouplingDemo.dto.UserMessagesDisplayDTO;
-import com.example.LooseCouplingDemo.dto.UserDisplayDTO;
+import com.example.LooseCouplingDemo.dto.UserAdditionDto;
+import com.example.LooseCouplingDemo.dto.UserDisplayDto;
+import com.example.LooseCouplingDemo.dto.UserMessagesDisplayDto;
 import com.example.LooseCouplingDemo.exceptions.ResourceNotFoundException;
 import com.example.LooseCouplingDemo.service_inteface.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,20 +17,20 @@ public class UsersController {
     @Autowired
     UserService userService;
     @GetMapping
-    List<UserDisplayDTO> getAllUsers(){
+    List<UserDisplayDto> getAllUsers(){
         return userService.getAllUsers();
     }
 
     @GetMapping("/{id}")
-    UserDisplayDTO getUserById(@PathVariable(value = "id")Long UserId)throws ResourceNotFoundException {
+    UserDisplayDto getUserById(@PathVariable(value = "id")Long UserId)throws ResourceNotFoundException {
         return userService.getUserById(UserId);
     }
 
     @GetMapping("/{id}/messages")
-    UserMessagesDisplayDTO getUserMessages(@PathVariable(value = "id")Long UserId)throws ResourceNotFoundException{return userService.getUserMessages(UserId);}
+    UserMessagesDisplayDto getUserMessages(@PathVariable(value = "id")Long UserId)throws ResourceNotFoundException{return userService.getUserMessages(UserId);}
 
     @PostMapping
-    UserMessagesDisplayDTO createUser(@RequestBody UserAdditionDTO userAdditionDTO){
+    UserMessagesDisplayDto createUser(@RequestBody UserAdditionDto userAdditionDTO){
         return userService.createUser(userAdditionDTO);
     }
 }
