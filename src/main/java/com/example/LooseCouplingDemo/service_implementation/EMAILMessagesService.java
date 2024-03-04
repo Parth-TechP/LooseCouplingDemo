@@ -30,16 +30,9 @@ public class EMAILMessagesService implements MessageService {
 
     @Override
     public MessageAdditionDTO getById(Long id)throws ResourceNotFoundException {
-        List<Messages> messages = messagesRepository.findAllByTypeIgnoreCase(messageType);
-        Messages messageById = null;
-        for(Messages messages1: messages){
-            if (messages1.getId() == id){
-                messageById = messages1;
-                break;
-            }
-        }
-        if (messageById != null) {
-            return messagesMapper.convertMessagesToMessageAdditionDTO(messageById);
+        Messages messages = messagesRepository.findAllByTypeIgnoreCaseAndId(messageType,id);
+        if (messages != null) {
+            return messagesMapper.convertMessagesToMessageAdditionDTO(messages);
         } else {
             throw new ResourceNotFoundException(id);
         }

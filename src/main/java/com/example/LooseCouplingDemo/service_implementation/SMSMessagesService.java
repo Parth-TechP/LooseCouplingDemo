@@ -30,8 +30,12 @@ public class SMSMessagesService implements MessageService {
 
     @Override
     public MessageAdditionDTO getById(Long id) throws ResourceNotFoundException {
-        List<Messages> messages = messagesRepository.findAllByTypeIgnoreCase(messageType);
-        return messagesMapper.convertMessagesToMessageAdditionDTO(messages.stream().filter(messages1 -> messages1.getId() == id).findFirst().orElseThrow(()-> new ResourceNotFoundException(id)));
+        Messages messages = messagesRepository.findAllByTypeIgnoreCaseAndId(messageType, id);
+        if (messages != null) {
+            return messagesMapper.convertMessagesToMessageAdditionDTO(messages);
+        } else {
+            throw new ResourceNotFoundException(id);
+        }
     }
 
     @Override
