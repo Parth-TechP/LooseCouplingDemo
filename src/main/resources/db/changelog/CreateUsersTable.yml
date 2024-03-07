@@ -1,0 +1,16 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create users table
+      author: Parth
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: BIGSERIAL
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: username
+                  type: VARCHAR(255)
